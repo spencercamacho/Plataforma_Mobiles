@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         photoImageView = (ImageView) findViewById(R.id.photoImageView);
         nameTextView = (TextView) findViewById(R.id.nameTextView);
         emailTextView = (TextView) findViewById(R.id.emailTextView);
-        idTextView = (TextView) findViewById(R.id.idTextView);
+       // idTextView = (TextView) findViewById(R.id.idTextView);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             nameTextView.setText(account.getDisplayName());
             emailTextView.setText(account.getEmail());
-            idTextView.setText(account.getId());
+          //  idTextView.setText(account.getId());
 
             Glide.with(this).load(account.getPhotoUrl()).into(photoImageView);
 
