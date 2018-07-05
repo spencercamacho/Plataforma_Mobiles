@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "625377255588",
+    "firebase_url": "https://sentinelv1-3765b.firebaseio.com",
+    "project_id": "sentinelv1-3765b",
+    "storage_bucket": "sentinelv1-3765b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625377255588:android:29254873d17f69b1",
+        "android_client_info": {
+          "package_name": "upc.edu.pe.sentinel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625377255588-a00fo46vq8un8jljlhs8fec9skf2gq4m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "upc.edu.pe.sentinel",
+            "certificate_hash": "6079f09a1d39824ff770a4dcdc9949176a717ed4"
+          }
+        },
+        {
+          "client_id": "625377255588-12c8nipkc4lbq9aghe0p5gvq3d41mujn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQjR4m3rzKgtwrySL77eXwSGEtGoLTono"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625377255588-12c8nipkc4lbq9aghe0p5gvq3d41mujn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
