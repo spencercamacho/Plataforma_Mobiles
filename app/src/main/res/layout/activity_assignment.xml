@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="upc.edu.pe.sentinel.viewcontrollers.activities.LoginActivity">
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+    tools:context="upc.edu.pe.sentinel.viewcontrollers.activities.AssignmentActivity">
 
 </android.support.constraint.ConstraintLayout>

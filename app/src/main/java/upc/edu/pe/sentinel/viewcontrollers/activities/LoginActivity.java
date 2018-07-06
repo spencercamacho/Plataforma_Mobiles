@@ -1,4 +1,4 @@
-package upc.edu.pe.sentinel;
+package upc.edu.pe.sentinel.viewcontrollers.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -13,6 +13,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import upc.edu.pe.sentinel.R;
+import upc.edu.pe.sentinel.viewcontrollers.activities.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
