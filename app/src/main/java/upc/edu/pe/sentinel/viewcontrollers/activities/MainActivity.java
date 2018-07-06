@@ -1,10 +1,12 @@
-package upc.edu.pe.sentinel;
+package upc.edu.pe.sentinel.viewcontrollers.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +23,9 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import upc.edu.pe.sentinel.R;
+import upc.edu.pe.sentinel.viewcontrollers.fragments.AssignmentsFragment;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private ImageView photoImageView;
@@ -30,24 +35,37 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private GoogleApiClient googleApiClient;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            return navigateTo(item);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        /*Seteando datos del usuario logueado con Google*/
         photoImageView = (ImageView) findViewById(R.id.photoImageView);
         nameTextView = (TextView) findViewById(R.id.nameTextView);
         emailTextView = (TextView) findViewById(R.id.emailTextView);
        // idTextView = (TextView) findViewById(R.id.idTextView);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
+                .requestEmail() //Solicitando email del que acaba de loguearse
                 .build();
 
         googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigateTo(navigation.getMenu().findItem(R.id.navigation_home));
     }
 
     @Override
@@ -118,6 +136,30 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    private Fragment getFragmentFor(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                return new AssignmentsFragment();
+           /* case R.id.navigation_sources:
+                return new SourcesFragment();
+            case R.id.navigation_favorites:
+                return new FavoritesFragment();
+            case R.id.navigation_settings:
+                return new SettingsFragment();*/
+        }
+        return null;
+    }
+
+    private boolean navigateTo(MenuItem item) {
+        item.setChecked(true);
+        return getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, getFragmentFor(item))
+                .commit() > 0;
 
     }
 }
