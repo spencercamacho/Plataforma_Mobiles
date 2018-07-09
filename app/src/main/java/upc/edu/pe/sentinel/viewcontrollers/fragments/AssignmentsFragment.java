@@ -49,7 +49,7 @@ public class AssignmentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_assignments, container, false);
-       /*  assignmentsRecyclerView = (RecyclerView) view.findViewById(R.id.assignmentsRecyclerView);
+        assignmentsRecyclerView = (RecyclerView) view.findViewById(R.id.assignmentsRecyclerView);
         assignments = new ArrayList<>();
         assignmentsAdapter = new AssigmentsAdapter(assignments);
         assignmentsLayoutManager = new GridLayoutManager(
@@ -59,9 +59,6 @@ public class AssignmentsFragment extends Fragment {
         assignmentsRecyclerView.setLayoutManager(assignmentsLayoutManager);
         updateData();
         return view;
-
-        */
-      return view;
     }
 
     private int getSpanCount(Configuration configuration) {
@@ -79,10 +76,10 @@ public class AssignmentsFragment extends Fragment {
     }
 
     private void updateData() {
-
-        /*
+        String url_api = SentinelApi.getAssigmentsUrl();
+        Log.d("Sentinel-Pietro", url_api);
         AndroidNetworking.get(SentinelApi.getAssigmentsUrl())
-                .addQueryParameter("apiKey", getString(R.string.news_api_key))
+                .addPathParameter("employeeId", "1")
                 .setPriority(Priority.LOW)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -95,19 +92,18 @@ public class AssignmentsFragment extends Fragment {
                             }
                             Log.d("Sentinel", String.valueOf(assignments.size()));
                             assignments = Assignment.Builder.from(response.getJSONArray("data")).buildAll();
-                            assignmentsAdapter.setArticles(articles);
+                            assignmentsAdapter.setAssignments(assignments);
                             assignmentsAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
-                            Log.d("CatchUp", e.getLocalizedMessage());
+                            Log.d("Sentinel", e.getLocalizedMessage());
                             e.printStackTrace();
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.d("CatchUp", anError.getLocalizedMessage());
+                        Log.d("Sentinel", anError.getLocalizedMessage());
                     }
                 });
-                */
     }
 }
