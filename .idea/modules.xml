@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Plataforma_Mobiles.iml" filepath="$PROJECT_DIR$/Plataforma_Mobiles.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sentinel.iml" filepath="$PROJECT_DIR$/sentinel.iml" />
+      <module fileurl="file://B:\RCPROYECTOS\08072018\Plataforma_Mobiles\app\app.iml" filepath="B:\RCPROYECTOS\08072018\Plataforma_Mobiles\app\app.iml" />
+      <module fileurl="file://B:\RCPROYECTOS\08072018\Plataforma_Mobiles\sentinel.iml" filepath="B:\RCPROYECTOS\08072018\Plataforma_Mobiles\sentinel.iml" />
     </modules>
   </component>
 </project>

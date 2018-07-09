@@ -57,13 +57,15 @@ public class AssigmentsAdapter extends RecyclerView.Adapter<AssigmentsAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ANImageView pictureImageView;
-        private TextView titleTextView;
+        private TextView assignmentcompanyTextView;
+        private TextView assignmentStateTextView;
         private ConstraintLayout assignmentLayout;
         private Assignment assignment;
         public ViewHolder(View itemView) {
             super(itemView);
          /*   pictureImageView = (ANImageView) itemView.findViewById(R.id.pictureImageView);*/
-            titleTextView = (TextView) itemView.findViewById(R.id.titleCompanyTextView);
+            assignmentcompanyTextView = (TextView) itemView.findViewById(R.id.assignmentCompanyTextView);
+            assignmentStateTextView = (TextView) itemView.findViewById(R.id.assignmentStateTextView);
             assignmentLayout = (ConstraintLayout) itemView.findViewById(R.id.assignmentLayout);
         }
 
@@ -71,7 +73,8 @@ public class AssigmentsAdapter extends RecyclerView.Adapter<AssigmentsAdapter.Vi
            /* pictureImageView.setDefaultImageResId(R.mipmap.ic_launcher);
             pictureImageView.setErrorImageResId(R.mipmap.ic_launcher);
             pictureImageView.setImageUrl(assignment.getUrlToImage()); */
-            titleTextView.setText(assignment.getName());
+            assignmentcompanyTextView.setText(assignment.getName());
+            assignmentStateTextView.setText(assignment.getStateDescription());
             this.assignment = assignment;
             assignmentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
