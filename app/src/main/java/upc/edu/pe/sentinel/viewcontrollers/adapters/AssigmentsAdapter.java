@@ -64,7 +64,7 @@ public class AssigmentsAdapter extends RecyclerView.Adapter<AssigmentsAdapter.Vi
         public ViewHolder(View itemView) {
             super(itemView);
          /*   pictureImageView = (ANImageView) itemView.findViewById(R.id.pictureImageView);*/
-            assignmentcompanyTextView = (TextView) itemView.findViewById(R.id.assignmentCompanyTextView);
+            assignmentcompanyTextView = (TextView) itemView.findViewById(R.id.assignmentcompanyTextView);
             assignmentStateTextView = (TextView) itemView.findViewById(R.id.assignmentStateTextView);
             assignmentLayout = (ConstraintLayout) itemView.findViewById(R.id.assignmentLayout);
         }

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".viewcontrollers.activities.MainActivity" />
-        <activity android:name=".viewcontrollers.activities.AssignmentActivity"></activity>
+        <activity android:name=".viewcontrollers.activities.AssignmentActivity" />
     </application>
 
 </manifest>

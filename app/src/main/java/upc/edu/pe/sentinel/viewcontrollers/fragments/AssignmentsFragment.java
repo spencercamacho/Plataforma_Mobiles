@@ -1,11 +1,14 @@
 package upc.edu.pe.sentinel.viewcontrollers.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,7 +39,7 @@ import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 public class AssignmentsFragment extends Fragment {
 
     RecyclerView        assignmentsRecyclerView;
-    GridLayoutManager   assignmentsLayoutManager;
+    LinearLayoutManager   assignmentsLayoutManager;
     AssigmentsAdapter assignmentsAdapter;
     List<Assignment> assignments;
 
@@ -48,34 +51,32 @@ public class AssignmentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_assignments, container, false);
+        View view = inflater.inflate(R.layout.fragment_assignments, container, false);
         assignmentsRecyclerView = (RecyclerView) view.findViewById(R.id.assignmentsRecyclerView);
         assignments = new ArrayList<>();
         assignmentsAdapter = new AssigmentsAdapter(assignments);
-        assignmentsLayoutManager = new GridLayoutManager(
-                view.getContext(),
-                getSpanCount(getResources().getConfiguration()));
+        assignmentsLayoutManager = new LinearLayoutManager(view.getContext());
         assignmentsRecyclerView.setAdapter(assignmentsAdapter);
         assignmentsRecyclerView.setLayoutManager(assignmentsLayoutManager);
-        updateData();
+
+        assignmentsRecyclerView.addItemDecoration(
+                (new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL)));
+
         return view;
     }
 
-    private int getSpanCount(Configuration configuration) {
-        return configuration.orientation == ORIENTATION_PORTRAIT ? 2 : 3;
-    }
-
-    private void updateLayoutManager(Configuration configuration) {
-        assignmentsLayoutManager.setSpanCount(getSpanCount(configuration));
-    }
-
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        updateLayoutManager(newConfig);
+    public void onResume() {
+        super.onResume();
+
+        updateData();
     }
 
     private void updateData() {
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Cargando");
+        progressDialog.show();
+
         String url_api = SentinelApi.getAssigmentsUrl();
         Log.d("Sentinel-Pietro", url_api);
         AndroidNetworking.get(SentinelApi.getAssigmentsUrl())
@@ -85,6 +86,9 @@ public class AssignmentsFragment extends Fragment {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        if (isAdded()) {
+                            progressDialog.dismiss();
+                        }
                         try {
                             if("error".equalsIgnoreCase(response.getString("status"))) {
                                 Log.d("Sentinel", response.getString("message"));
@@ -102,6 +106,9 @@ public class AssignmentsFragment extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
+                        if (isAdded()) {
+                            progressDialog.dismiss();
+                        }
                         Log.d("Sentinel", anError.getLocalizedMessage());
                     }
                 });
