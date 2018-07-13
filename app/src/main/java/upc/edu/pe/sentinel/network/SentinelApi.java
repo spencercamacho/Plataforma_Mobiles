@@ -16,6 +16,9 @@ public class SentinelApi {
         return BASE_URL + "/assignments/{employeeId}";
     }
 
+    public static String getAssignmentsByDateUrl() {
+        return BASE_URL + "/assignmentsByDate/{employeeId}";
+    }
     public static String changeState() {
         return BASE_URL + "/assignments/{id}";
     }
